@@ -1,0 +1,25 @@
+<div *ngIf="(user$ | async) as user; else notLoggedIn">
+  <h1>{{user.username}}</h1>
+
+  <h2> All tasks</h2>
+  <ul *ngIf="(taskList$ | async) as taskList">
+    <li *ngFor="let task of taskList">
+      <strong>{{task.id}}:</strong> {{task.name}}
+    </li>
+  </ul>
+
+  <h2> Finished tasks</h2>
+  <ul *ngIf="(taskListDone$ | async) as taskList">
+    <li *ngFor="let task of taskList">
+      <strong>{{task.id}}:</strong> {{task.name}}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="userDetails">
+  <h1>{{userDetails.username}}</h1>
+</div>
+
+<ng-template #notLoggedIn>
+  You're not logged in
+</ng-template>
